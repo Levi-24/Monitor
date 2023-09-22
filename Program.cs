@@ -31,7 +31,7 @@ namespace Monitor
             while (!sr.EndOfStream) {monitorok.Add(new Monitor(sr.ReadLine()));}
 
             Console.WriteLine("2.Feladat: ");
-            foreach (var monitor in monitorok) {Console.WriteLine($"\tGyártó: {monitor.Gyarto}; Típus: {monitor.Tipus}; Méret: {monitor.Meret}; Nettó ár: {monitor.Ar} Ft");}
+            foreach (var monitor in monitorok) {Console.WriteLine($"\tGyártó: {monitor.Gyarto}; Típus: {monitor.Tipus}; Méret: {monitor.Meret}; Nettó ár: {monitor.Ar} Ft {monitor.Gamer}{monitor.Brutto}");}
 
 
             //2. Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
