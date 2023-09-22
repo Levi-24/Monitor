@@ -16,11 +16,7 @@ namespace Monitor
 
             //Feladatok: 
             //Lehetőleg minden kiírást a főprogram végezzen el. Próbálj minél több kódot újrahasznosítani. Minden feladatot meg kell oldani hagyományosan, és azután, ha tudod, LINQ-val is.
-
             //1. Hozz létre egy osztályt a monitorok adatai számára. Olvasd be a fájl tartalmát.
-            //2. Írd ki a monitorok összes adatát virtuális metódussal, soronként egy monitort a képernyőre. A kiírás így nézzen ki: 
-            //Gyártó: Samsung; Típus: S24D330H; Méret: 24 col; Nettó ár: 33000 Ft 
-
             var monitorok = new List<Monitor>();
             using StreamReader sr = new StreamReader(
                 path: "../../../src/Monitorok.txt",
@@ -30,13 +26,15 @@ namespace Monitor
             Console.WriteLine("1.Feladat: Beolvasás");
             while (!sr.EndOfStream) {monitorok.Add(new Monitor(sr.ReadLine()));}
 
+            //2. Írd ki a monitorok összes adatát virtuális metódussal, soronként egy monitort a képernyőre. A kiírás így nézzen ki: 
+            //Gyártó: Samsung; Típus: S24D330H; Méret: 24 col; Nettó ár: 33000 Ft 
+            //Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
             Console.WriteLine("2.Feladat: ");
-            foreach (var monitor in monitorok) {Console.WriteLine($"\tGyártó: {monitor.Gyarto}; Típus: {monitor.Tipus}; Méret: {monitor.Meret}; Nettó ár: {monitor.Ar} Ft {monitor.Gamer}{monitor.Brutto}");}
+            foreach (var monitor in monitorok) {Console.WriteLine($"\tGyártó: {monitor.Gyarto}; Típus: {monitor.Tipus}; Méret: {monitor.Meret}; Nettó ár: {monitor.Ar} Ft");}
 
-
-            //2. Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
             //3. Tételezzük fel, hogy mindegyik monitorból 15 db van készleten, ez a nyitókészlet. Mekkora a nyitó raktárkészlet bruttó (tehát áfával növelt) értéke?
             //Írj egy metódust, ami meghívásakor kiszámolja a raktárkészlet aktuális bruttó értékét. A főprogram írja ki az értéket. 
+            Console.WriteLine($"3.Feladat: A raktárkészlet aktuális bruttó értéke: {KezdoKeszlet(monitorok)} Ft");
 
             //4. Írd ki egy új fájlba, és a képernyőre az 50.000 Ft feletti nettó értékű monitorok összes adatát (a darabszámmal együtt) úgy,
             //hogy a szöveges adatok nagybetűsek legyenek, illetve az árak ezer forintba legyenek átszámítva.
@@ -59,6 +57,12 @@ namespace Monitor
             //10. Írd ki a képernyőre, hogy a vásárlások után van-e olyan monitor, amelyikből mindegyik elfogyott (igen/nem
             //11. Írd ki a gyártókat abc sorrendben a képernyőre. Oldd meg úgy is, hogy a metódus írja ki, és úgy is, hogy a főprogram
             //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre. 
+        }
+        static int KezdoKeszlet(List<Monitor> monitorok)
+        {
+            int keszlet = 0;
+            foreach (var monitor in monitorok) {keszlet += monitor.Brutto * 15;}
+            return keszlet;
         }
     }
 }

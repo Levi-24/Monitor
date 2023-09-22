@@ -18,15 +18,12 @@ namespace Monitor
         public Monitor(string beolvasottS)
         {
             var darabok = new List<string>(beolvasottS.Split(';'));
-
             this.Gyarto = darabok[0];
             this.Tipus = darabok[1];
             this.Meret = double.Parse(darabok[2]);
             this.Ar = int.Parse(darabok[3]);
-
             if (darabok.Count == 5) {this.Gamer = true;}
             else {this.Gamer = false;}
-
             int ar = int.Parse(darabok[3]);
             this.Brutto = Convert.ToInt32(ar += (ar / 100) * 27);
         }
