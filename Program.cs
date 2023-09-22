@@ -12,8 +12,6 @@ namespace Monitor
             //Egy hardver cég többféle monitort árul. A monitorokról a következő adatokat tároljuk: a monitor gyártója; típusa; mérete; ára; 
             //illetve amelyik kifejezetten játékra való, ott még megadják azt is, hogy gamer. 
             //A méret colban van, az ár nettó és forintban értjük. 
-
-
             //Feladatok: 
             //Lehetőleg minden kiírást a főprogram végezzen el. Próbálj minél több kódot újrahasznosítani. Minden feladatot meg kell oldani hagyományosan, és azután, ha tudod, LINQ-val is.
             //1. Hozz létre egy osztályt a monitorok adatai számára. Olvasd be a fájl tartalmát.
@@ -24,8 +22,7 @@ namespace Monitor
             _ = sr.ReadLine();
 
             Console.WriteLine("1.Feladat: Beolvasás");
-            while (!sr.EndOfStream) {monitorok.Add(new Monitor(sr.ReadLine()));}
-
+            
             //2. Írd ki a monitorok összes adatát virtuális metódussal, soronként egy monitort a képernyőre. A kiírás így nézzen ki: 
             //Gyártó: Samsung; Típus: S24D330H; Méret: 24 col; Nettó ár: 33000 Ft 
             //Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
