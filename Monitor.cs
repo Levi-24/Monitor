@@ -8,7 +8,7 @@ namespace Monitor
 {
     class Monitor
     {
-        public string Marka { get; set; }
+        public string Gyarto { get; set; }
         public string Tipus { get; set; }
         public double Meret { get; set; }
         public int Ar { get; set; }
@@ -17,18 +17,11 @@ namespace Monitor
         public Monitor(string beolvasottS)
         {
             var darabok = beolvasottS.Split(';');
-            this.Marka = darabok[0];
+            this.Gyarto = darabok[0];
             this.Tipus = darabok[1];
             this.Meret = double.Parse(darabok[2]);
             this.Ar = int.Parse(darabok[3]);
-            if (darabok[4] == "gamer")
-            {
-                this.Gamer = true;
-            }
-            else
-            {
-                this.Gamer = false;
-            }
+            this.Gamer = darabok[4] == "gamer";
         }
     }
 }

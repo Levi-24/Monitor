@@ -25,18 +25,13 @@ namespace Monitor
             using StreamReader sr = new StreamReader(
                 path: "../../../src/Monitorok.txt",
                 Encoding.UTF8);
-
             _ = sr.ReadLine();
 
-            while (!sr.EndOfStream)
-            {
-                monitorok.Add(new Monitor(sr.ReadLine()));
-            }
+            Console.WriteLine("1.Feladat: Beolvasás");
+            while (!sr.EndOfStream) {monitorok.Add(new Monitor(sr.ReadLine()));}
 
-            foreach (var monitor in monitorok)
-            {
-                Console.WriteLine(monitor.Gamer);
-            }
+            Console.WriteLine("2.Feladat: ");
+            foreach (var monitor in monitorok) {Console.WriteLine($"\tGyártó: {monitor.Gyarto}; Típus: {monitor.Tipus}; Méret: {monitor.Meret}; Nettó ár: {monitor.Ar} Ft");}
 
 
             //2. Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
