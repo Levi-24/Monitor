@@ -27,7 +27,8 @@ namespace Monitor
             if (darabok.Count == 5) {this.Gamer = true;}
             else {this.Gamer = false;}
 
-            this.Brutto = Convert.ToInt32(darabok[3] += (darabok[3]));
+            int ar = int.Parse(darabok[3]);
+            this.Brutto = Convert.ToInt32(ar += (ar / 100) * 27);
         }
     }
 }
