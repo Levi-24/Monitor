@@ -21,7 +21,14 @@ namespace Monitor
             this.Tipus = darabok[1];
             this.Meret = double.Parse(darabok[2]);
             this.Ar = int.Parse(darabok[3]);
-            
+            if (darabok[4] == "gamer")
+            {
+                this.Gamer = true;
+            }
+            else
+            {
+                this.Gamer = false;
+            }
         }
     }
 }

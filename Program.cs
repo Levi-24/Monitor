@@ -35,7 +35,7 @@ namespace Monitor
 
             foreach (var monitor in monitorok)
             {
-                Console.WriteLine(monitor);
+                Console.WriteLine(monitor.Gamer);
             }
 
 
