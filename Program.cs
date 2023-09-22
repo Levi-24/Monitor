@@ -39,6 +39,11 @@ namespace Monitor
             //4. Írd ki egy új fájlba, és a képernyőre az 50.000 Ft feletti nettó értékű monitorok összes adatát (a darabszámmal együtt) úgy,
             //hogy a szöveges adatok nagybetűsek legyenek, illetve az árak ezer forintba legyenek átszámítva.
             //Az ezer forintba átszámítást egy külön függvényben valósítsd meg. 
+            using StreamWriter writer = new StreamWriter(path: "../../../src/50-felett.txt", append: false);
+            foreach (var monitor in monitorok)
+            {
+                if (monitor.Ar > 50000) { writer.WriteLine($"{monitor.Gyarto.ToUpper()};{monitor.Tipus.ToUpper()};{monitor.Meret};15DB,{Ezres(monitor.Ar)}EZER");}
+            }
 
             //5. Egy vevő keresi a HP EliteDisplay E242 monitort. Írd ki neki a képernyőre, hogy hány darab ilyen van a készleten.
             //Ha nincs a készleten, ajánlj neki egy olyan monitort, aminek az ára az átlaghoz fölülről közelít. Ehhez használd az átlagszámító függvényt (később lesz feladat). 
@@ -63,6 +68,12 @@ namespace Monitor
             int keszlet = 0;
             foreach (var monitor in monitorok) {keszlet += monitor.Brutto * 15;}
             return keszlet;
+        }
+
+        static int Ezres(int ar)
+        {
+            int ezres = ar / 1000;
+            return ezres;
         }
     }
 }
