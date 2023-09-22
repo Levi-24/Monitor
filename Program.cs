@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace Monitor
 {
@@ -8,7 +11,6 @@ namespace Monitor
         {
             //Egy hardver cég többféle monitort árul. A monitorokról a következő adatokat tároljuk: a monitor gyártója; típusa; mérete; ára; 
             //illetve amelyik kifejezetten játékra való, ott még megadják azt is, hogy gamer. 
-
             //A méret colban van, az ár nettó és forintban értjük. 
 
 
@@ -18,6 +20,24 @@ namespace Monitor
             //1. Hozz létre egy osztályt a monitorok adatai számára. Olvasd be a fájl tartalmát.
             //2. Írd ki a monitorok összes adatát virtuális metódussal, soronként egy monitort a képernyőre. A kiírás így nézzen ki: 
             //Gyártó: Samsung; Típus: S24D330H; Méret: 24 col; Nettó ár: 33000 Ft 
+
+            var monitorok = new List<Monitor>();
+            using StreamReader sr = new StreamReader(
+                path: "../../../src/Monitorok.txt",
+                Encoding.UTF8);
+
+            _ = sr.ReadLine();
+
+            while (!sr.EndOfStream)
+            {
+                monitorok.Add(new Monitor(sr.ReadLine()));
+            }
+
+            foreach (var monitor in monitorok)
+            {
+                Console.WriteLine(monitor);
+            }
+
 
             //2. Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
             //3. Tételezzük fel, hogy mindegyik monitorból 15 db van készleten, ez a nyitókészlet. Mekkora a nyitó raktárkészlet bruttó (tehát áfával növelt) értéke?
