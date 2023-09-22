@@ -14,6 +14,7 @@ namespace Monitor
         public int Ar { get; set; }
         public bool Gamer { get; set; }
         public int Brutto { get; set; }
+        public int Darab { get; set; }
 
         public Monitor(string beolvasottS)
         {
@@ -26,6 +27,7 @@ namespace Monitor
             else {this.Gamer = false;}
             int ar = int.Parse(darabok[3]);
             this.Brutto = Convert.ToInt32(ar += (ar / 100) * 27);
+            this.Darab = 15;
         }
     }
 }

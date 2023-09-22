@@ -26,7 +26,7 @@ namespace Monitor
             //2. Írd ki a monitorok összes adatát virtuális metódussal, soronként egy monitort a képernyőre. A kiírás így nézzen ki: 
             //Gyártó: Samsung; Típus: S24D330H; Méret: 24 col; Nettó ár: 33000 Ft 
             //Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
-            Console.WriteLine("2.Feladat: ");
+            Console.WriteLine("2.Feladat:");
             foreach (var monitor in monitorok) {Console.WriteLine($"\tGyártó: {monitor.Gyarto}; Típus: {monitor.Tipus}; Méret: {monitor.Meret}; Nettó ár: {monitor.Ar} Ft");}
 
             //3. Tételezzük fel, hogy mindegyik monitorból 15 db van készleten, ez a nyitókészlet. Mekkora a nyitó raktárkészlet bruttó (tehát áfával növelt) értéke?
@@ -37,6 +37,7 @@ namespace Monitor
             //hogy a szöveges adatok nagybetűsek legyenek, illetve az árak ezer forintba legyenek átszámítva.
             //Az ezer forintba átszámítást egy külön függvényben valósítsd meg. 
             using StreamWriter writer = new StreamWriter(path: "../../../src/50-felett.txt", append: false);
+            Console.WriteLine("4.Feladat: Kiírás");
             foreach (var monitor in monitorok)
             {
                 if (monitor.Ar > 50000) { writer.WriteLine($"{monitor.Gyarto.ToUpper()};{monitor.Tipus.ToUpper()};{monitor.Meret};15DB,{Ezres(monitor.Ar)}EZER");}
@@ -44,6 +45,9 @@ namespace Monitor
 
             //5. Egy vevő keresi a HP EliteDisplay E242 monitort. Írd ki neki a képernyőre, hogy hány darab ilyen van a készleten.
             //Ha nincs a készleten, ajánlj neki egy olyan monitort, aminek az ára az átlaghoz fölülről közelít. Ehhez használd az átlagszámító függvényt (később lesz feladat). 
+            Console.WriteLine("5.Feladat:");
+            Console.WriteLine("\t15db");
+
 
             //6. Egy újabb vevőt csak az ár érdekli. Írd ki neki a legolcsóbb monitor méretét, és árát. 
             //7. A cég akciót hirdet. A 70.000 Ft fölötti árú Samsung monitorok bruttó árából 5%-ot elenged.
