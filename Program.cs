@@ -111,8 +111,14 @@ namespace Monitor
                 Console.WriteLine($"\tA(z) {monitor.Gyarto} {monitor.Tipus} monitorból {monitor.Darab}db maradt.");
             }
 
-            //10. Írd ki a képernyőre, hogy a vásárlások után van-e olyan monitor, amelyikből mindegyik elfogyott (igen/nem
+            //10. Írd ki a képernyőre, hogy a vásárlások után van-e olyan monitor, amelyikből mindegyik elfogyott (igen/nem)
+            Console.WriteLine("10.Feladat:");
+            var soldOut = monitorok.OrderBy(m => m.Darab).First();
+            if (soldOut.Darab == 0) {Console.WriteLine("\tigen");}
+            else {Console.WriteLine("\tnem");}
+
             //11. Írd ki a gyártókat abc sorrendben a képernyőre. Oldd meg úgy is, hogy a metódus írja ki, és úgy is, hogy a főprogram
+
             //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre. 
         }
         static int KezdoKeszlet(List<Monitor> monitorok)
