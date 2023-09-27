@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Channels;
+using System.Xml.Linq;
 
 namespace Monitor
 {
@@ -119,14 +120,24 @@ namespace Monitor
 
             //11. Írd ki a gyártókat abc sorrendben a képernyőre. Oldd meg úgy is, hogy a metódus írja ki, és úgy is, hogy a főprogram
             Console.WriteLine("11.Feladat:");
-            var abc = monitorok.Select(m => m.Gyarto).Distinct();
+            //var abc = monitorok.Select(m => m.Gyarto).Distinct();
+            //foreach (var monitor in abc)
+            //{
+            //    Console.WriteLine($"\t{monitor}");
+            //}
+            TaskEleven(monitorok);
 
+            //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre. 
+        }
+        static void TaskEleven(List<Monitor> monitorok)
+        {
+            var abc = monitorok.Select(m => m.Gyarto).Distinct();
             foreach (var monitor in abc)
             {
                 Console.WriteLine($"\t{monitor}");
             }
-            //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre. 
         }
+
         static int KezdoKeszlet(List<Monitor> monitorok)
         {
             int keszlet = 0;
