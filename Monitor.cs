@@ -28,6 +28,7 @@ namespace Monitor
             int ar = int.Parse(darabok[3]);
             this.Brutto = Convert.ToInt32(ar += (ar / 100) * 27);
             this.Darab = 15;
+
         }
     }
 }

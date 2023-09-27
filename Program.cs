@@ -79,7 +79,6 @@ namespace Monitor
 
             //8. Írd ki a képernyőre minden monitor esetén, hogy az adott monitor nettó ára a nettó átlag ár alatt van-e, vagy fölötte
             //esetleg pontosan egyenlő az átlag árral. Ezt is a főprogram írja ki
-
             Console.WriteLine("8.Feladat:");
             foreach (var monitor in monitorok)
             {
@@ -92,6 +91,10 @@ namespace Monitor
             //ezzel csökkentve az eredeti készletet. Írd ki, hogy melyik monitorból mennyi maradt a boltban
             //Vigyázz, hogy nulla darab alá ne mehessen a készlet. Ha az adott monitor éppen elfogyott, ajánlj neki egy másikat (lásd fent
 
+
+
+
+
             //10. Írd ki a képernyőre, hogy a vásárlások után van-e olyan monitor, amelyikből mindegyik elfogyott (igen/nem
             //11. Írd ki a gyártókat abc sorrendben a képernyőre. Oldd meg úgy is, hogy a metódus írja ki, és úgy is, hogy a főprogram
             //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre. 
@@ -99,7 +102,7 @@ namespace Monitor
         static int KezdoKeszlet(List<Monitor> monitorok)
         {
             int keszlet = 0;
-            foreach (var monitor in monitorok) {keszlet += monitor.Brutto * 15;}
+            foreach (var monitor in monitorok) {keszlet += monitor.Brutto * monitor.Darab;}
             return keszlet;
         }
 
