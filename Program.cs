@@ -68,27 +68,24 @@ namespace Monitor
 
             //7. A cég akciót hirdet. A 70.000 Ft fölötti árú Samsung monitorok bruttó árából 5%-ot elenged.
             //Írd ki, hogy mennyit veszítene a cég az akcióval, ha az összes akciós monitort akciósan eladná
+            Console.WriteLine("7.Feladat:");
             int maxProfit = 0;
             foreach (var monitor in monitorok) {maxProfit += monitor.Ar * monitor.Darab;}
-            Console.WriteLine($"\t Maximum profit: {maxProfit}");
+            Console.WriteLine($"\tMaximum profit: {maxProfit}");
 
             double saleProfit = 0;
             foreach (var monitor in monitorok) {saleProfit += (monitor.Ar * 0.95) * monitor.Darab; }
-            Console.WriteLine($"\t Maximum profit a leárazás után: {saleProfit}");
+            Console.WriteLine($"\tMaximum profit a leárazás után: {saleProfit}");
 
             //8. Írd ki a képernyőre minden monitor esetén, hogy az adott monitor nettó ára a nettó átlag ár alatt van-e, vagy fölötte
             //esetleg pontosan egyenlő az átlag árral. Ezt is a főprogram írja ki
+
+            Console.WriteLine("8.Feladat:");
             foreach (var monitor in monitorok)
             {
-
-                if (monitor.Ar > atlag)
-                {
-                    Console.WriteLine($"\tA(z) {atlagFelso.Gyarto} {atlagFelso.Tipus} monitor átlagára nagyobb.");
-                }
-                else
-                {
-
-                }
+                string result = monitor.Ar > atlag ? "drágább" :
+                                monitor.Ar < atlag ? "olcsóbb" : "ugyanannyi";
+                Console.WriteLine($"\tA(z) {monitor.Gyarto} {monitor.Tipus} monitor {result} mint az átlag.");
             }
 
             //9. Modellezzük, hogy megrohamozták a vevők a boltot. 5 és 15 közötti random számú vásárló 1 vagy 2 random módon kiválasztott monitort vásárol
