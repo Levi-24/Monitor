@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Channels;
 
 namespace Monitor
 {
@@ -90,12 +92,23 @@ namespace Monitor
             //9. Modellezzük, hogy megrohamozták a vevők a boltot. 5 és 15 közötti random számú vásárló 1 vagy 2 random módon kiválasztott monitort vásárol
             //ezzel csökkentve az eredeti készletet. Írd ki, hogy melyik monitorból mennyi maradt a boltban
             //Vigyázz, hogy nulla darab alá ne mehessen a készlet. Ha az adott monitor éppen elfogyott, ajánlj neki egy másikat (lásd fent
+            Console.WriteLine("9.Feladat:");
             Random rnd = new Random();
             int customerCount = rnd.Next(5, 16);
             for (int i = 0; i < customerCount; i++)
             {
                 int boughtAmnt = rnd.Next(1, 3);
                 int monitorIndex = rnd.Next(0, monitorok.Count);
+
+                if (monitorok[monitorIndex].Darab - boughtAmnt < 0) 
+                {
+                    Console.WriteLine("\tNincsen annyi termék raktáron amennyit venni szeretnél.");
+                }
+                else {monitorok[monitorIndex].Darab -= boughtAmnt;}
+            }
+            foreach (var monitor in monitorok)
+            {
+                Console.WriteLine($"\tA(z) {monitor.Gyarto} {monitor.Tipus} monitorból {monitor.Darab}db maradt.");
             }
 
             //10. Írd ki a képernyőre, hogy a vásárlások után van-e olyan monitor, amelyikből mindegyik elfogyott (igen/nem
