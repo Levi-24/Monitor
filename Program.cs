@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Monitor
@@ -22,7 +23,10 @@ namespace Monitor
             _ = sr.ReadLine();
 
             Console.WriteLine("1.Feladat: Beolvasás");
-            
+            while (!sr.EndOfStream)
+            {
+                monitorok.Add(new Monitor(sr.ReadLine()));
+            }
             //2. Írd ki a monitorok összes adatát virtuális metódussal, soronként egy monitort a képernyőre. A kiírás így nézzen ki: 
             //Gyártó: Samsung; Típus: S24D330H; Méret: 24 col; Nettó ár: 33000 Ft 
             //Tárold az osztálypéldányokban a bruttó árat is (ÁFA: 27%, konkrétan a 27-tel számolj, ne 0,27-tel vagy más megoldással.) 
@@ -40,21 +44,52 @@ namespace Monitor
             Console.WriteLine("4.Feladat: Kiírás");
             foreach (var monitor in monitorok)
             {
-                if (monitor.Ar > 50000) { writer.WriteLine($"{monitor.Gyarto.ToUpper()};{monitor.Tipus.ToUpper()};{monitor.Meret};15DB,{Ezres(monitor.Ar)}EZER");}
+                if (monitor.Ar > 50000) { writer.WriteLine($"{monitor.Gyarto.ToUpper()};{monitor.Tipus.ToUpper()};{monitor.Meret};{monitor.Darab},{Ezres(monitor.Ar)}EZER");}
             }
 
             //5. Egy vevő keresi a HP EliteDisplay E242 monitort. Írd ki neki a képernyőre, hogy hány darab ilyen van a készleten.
             //Ha nincs a készleten, ajánlj neki egy olyan monitort, aminek az ára az átlaghoz fölülről közelít. Ehhez használd az átlagszámító függvényt (később lesz feladat). 
             Console.WriteLine("5.Feladat:");
-            Console.WriteLine("\t15db");
+            var keresettDarab = monitorok.Where(m => m.Tipus == "EliteDisplay E242").Select(m => m.Darab);
+            double atlag = monitorok.Average(m => m.Ar);
+            var atlagFelso = monitorok.OrderBy(m => m.Ar).First(m => m.Ar > atlag);
 
+            if (keresettDarab.FirstOrDefault() == 0)
+            {
+                Console.WriteLine("\tA HP EliteDisplay E242 sajnos nincs a készleten.");
+                Console.WriteLine($"\tHelyette ajánlom a(z) {atlagFelso.Gyarto} {atlagFelso.Tipus} monitort ami csak {atlagFelso.Ar}Ft-ba kerül.");
+            }
+            else {Console.WriteLine(keresettDarab.FirstOrDefault() + "db van raktáron.");}
 
             //6. Egy újabb vevőt csak az ár érdekli. Írd ki neki a legolcsóbb monitor méretét, és árát. 
+            Console.WriteLine("6.Feladat:");
+            var min = monitorok.OrderBy(m => m.Ar).First();
+            Console.WriteLine($"\tA legolcsóbb monitor ára {min.Ar}, a mérete pedig {min.Meret}.");
+
             //7. A cég akciót hirdet. A 70.000 Ft fölötti árú Samsung monitorok bruttó árából 5%-ot elenged.
             //Írd ki, hogy mennyit veszítene a cég az akcióval, ha az összes akciós monitort akciósan eladná
+            int maxProfit = 0;
+            foreach (var monitor in monitorok) {maxProfit += monitor.Ar * monitor.Darab;}
+            Console.WriteLine($"\t Maximum profit: {maxProfit}");
+
+            double saleProfit = 0;
+            foreach (var monitor in monitorok) {saleProfit += (monitor.Ar * 0.95) * monitor.Darab; }
+            Console.WriteLine($"\t Maximum profit a leárazás után: {saleProfit}");
 
             //8. Írd ki a képernyőre minden monitor esetén, hogy az adott monitor nettó ára a nettó átlag ár alatt van-e, vagy fölötte
             //esetleg pontosan egyenlő az átlag árral. Ezt is a főprogram írja ki
+            foreach (var monitor in monitorok)
+            {
+
+                if (monitor.Ar > atlag)
+                {
+                    Console.WriteLine($"\tA(z) {atlagFelso.Gyarto} {atlagFelso.Tipus} monitor átlagára nagyobb.");
+                }
+                else
+                {
+
+                }
+            }
 
             //9. Modellezzük, hogy megrohamozták a vevők a boltot. 5 és 15 közötti random számú vásárló 1 vagy 2 random módon kiválasztott monitort vásárol
             //ezzel csökkentve az eredeti készletet. Írd ki, hogy melyik monitorból mennyi maradt a boltban
