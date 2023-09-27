@@ -118,7 +118,13 @@ namespace Monitor
             else {Console.WriteLine("\tnem");}
 
             //11. Írd ki a gyártókat abc sorrendben a képernyőre. Oldd meg úgy is, hogy a metódus írja ki, és úgy is, hogy a főprogram
+            Console.WriteLine("11.Feladat:");
+            var abc = monitorok.Select(m => m.Gyarto).Distinct();
 
+            foreach (var monitor in abc)
+            {
+                Console.WriteLine($"\t{monitor}");
+            }
             //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre. 
         }
         static int KezdoKeszlet(List<Monitor> monitorok)
