@@ -127,7 +127,11 @@ namespace Monitor
             //}
             TaskEleven(monitorok);
 
-            //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre. 
+            //12. Csökkentsd a legdrágább monitor bruttó árát 10%-kal, írd ki ezt az értéket a képernyőre.
+            Console.WriteLine("12.Feldat:");
+            var f12 = monitorok.OrderBy(m => m.Brutto).Last();
+            Console.WriteLine($"\tA legdrágább monitor ára 10%-al csökkentve: {f12.Brutto * .9}");
+
         }
         static void TaskEleven(List<Monitor> monitorok)
         {
